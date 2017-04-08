@@ -18,8 +18,11 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     weak var delegate: FiltersViewControllerDelegate?
     
+    var sections: [String: [String]] = [:]
     var categories: [[String:String]] = []
     var switchStates = [Int:Bool]()
+    
+    let SwitchCellIdentifier = "SwitchCell", HeaderSectionIdentifier = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
