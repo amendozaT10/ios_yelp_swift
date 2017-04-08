@@ -69,7 +69,6 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         
         cell.switchLabel.text = categories[indexPath.row]["name"]
         cell.delegate = self
-        
         cell.onSwitch.isOn = switchStates[indexPath.row] ?? false
         
         return cell

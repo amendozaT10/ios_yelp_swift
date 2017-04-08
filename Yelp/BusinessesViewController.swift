@@ -74,7 +74,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigationController = segue.destination as! UINavigationController
         
         let filtersViewController = navigationController.topViewController as! FiltersViewController
@@ -83,15 +83,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
      }
     
     func filtersViewController(filtersViewController: FiltersViewController, didUpdateFilters filters: [String : AnyObject]) {
-        
-
         let categories = filters["categories"] as! [String]
         print(categories)
-//        Business.searchWithTerm(term: "Restaurants", completion: { (businesses: [Business]?, error: Error?) -> Void in
-//            self.businesses = businesses
-//            self.tableView.reloadData()
-//        }
-//        )
         
         Business.searchWithTerm(term: "Restaurants", sort: nil, categories: categories, deals: nil, completion: { (businesses: [Business]?, error: Error?) -> Void in
             self.businesses = businesses
