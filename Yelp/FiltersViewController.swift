@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 @objc protocol FiltersViewControllerDelegate {
     @objc optional func filtersViewController(filtersViewController: FiltersViewController,
                                         didUpdateFilters filters: [String: AnyObject])
@@ -47,18 +46,18 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         var filters = [String:AnyObject]()
         
         var selectedCategories = [String]()
+        
         for (row, isSelected) in switchStates {
             if isSelected {
                 selectedCategories.append(categories[row]["code"]!)
             }
         }
+        
         if selectedCategories.count > 0 {
             filters["categories"] = selectedCategories as AnyObject?
         }
         
-        delegate?.filtersViewController!(filtersViewController: self, didUpdateFilters: filters)
-        
-        
+        delegate?.filtersViewController?(filtersViewController: self, didUpdateFilters: filters)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
