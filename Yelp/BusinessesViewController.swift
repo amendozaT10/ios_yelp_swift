@@ -8,14 +8,23 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FiltersViewControllerDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, FiltersViewControllerDelegate {
     
     var businesses: [Business]!
+    var filteredBusinesses: [Business]?
+    var searchBar: UISearchBar?
+    var showSearchResults = false
+    
+    let CellIdentifier = "BusinessCell"
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        showSearchResults = false
+        
+        createSearchBar()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -46,7 +55,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
          }
          }
          */
-        
+    }
+    
+    func createSearchBar() {
+        searchBar = UISearchBar()
+        searchBar?.placeholder = "Search Restaurants"
+        searchBar?.delegate = self
+        navigationItem.titleView = searchBar
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,20 +69,37 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Table View functionality
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if businesses != nil {
-            return businesses.count
+            if showSearchResults
+            {
+                return (filteredBusinesses?.count)!
+            }
+            else {
+                return businesses.count
+            }
         } else {
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath) as! BusinessCell
         
-        cell.business = businesses[indexPath.row]
+        if showSearchResults {
+            cell.business = filteredBusinesses?[indexPath.row]
+        } else {
+            cell.business = businesses[indexPath.row]
+        }
+        
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         tableView.deselectRow(at: indexPath, animated:false)
     }
     
     
@@ -92,5 +124,49 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         }
         )
     }
+    
+    // MARK: -SERACH BAR FUBCTIONALITY BELOW
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("text was edited")
+        
+        self.filteredBusinesses = self.businesses?.filter({ (business: Business) -> Bool in
+            
+            let businessName = business.name
+            return businessName!.lowercased().range(of: searchText, options: .caseInsensitive) != nil
+        })
+        
+        if (searchText != "")
+        {
+            showSearchResults = true
+            self.tableView.reloadData()
+        }
+        else
+        {
+            showSearchResults = false
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        showSearchResults = true
+        searchBar.endEditing(true)
+        self.tableView.reloadData()
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar?.endEditing(true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar?.endEditing(true)
+    }
+    
+    func onTap(_ sender: Any) {
+        searchBar?.endEditing(true)
+    }
+
     
 }

@@ -14,7 +14,6 @@ import UIKit
 
 class SwitchCell: UITableViewCell {
     
-    
     @IBOutlet weak var switchLabel: UILabel!
     @IBOutlet weak var onSwitch: UISwitch!
     
@@ -24,6 +23,8 @@ class SwitchCell: UITableViewCell {
         super.awakeFromNib()
         
         onSwitch.addTarget(self, action: #selector(SwitchCell.switchValueChanged), for: UIControlEvents.valueChanged)
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

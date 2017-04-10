@@ -9,8 +9,8 @@
 import UIKit
 
 class SettingsSectionHeader: UITableViewHeaderFooterView {
-    
-    var title: String?
+
+    @IBOutlet weak var title: UILabel!
 
     /*
     // Only override draw() if you perform custom drawing.
