@@ -204,16 +204,15 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="unselectedCheck" translatesAutoresizingMaskIntoConstraints="NO" id="QJs-du-Byk">
                                                     <rect key="frame" x="295" y="18" width="50" height="52"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhg-4y-HRg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhg-4y-HRg">
+                                                    <rect key="frame" x="295" y="18" width="50" height="52"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Fhg-4y-HRg" secondAttribute="trailing" id="ORE-2B-4EY"/>
-                                                <constraint firstAttribute="bottom" secondItem="Fhg-4y-HRg" secondAttribute="bottom" id="Uj1-UP-r7y"/>
+                                                <constraint firstItem="Fhg-4y-HRg" firstAttribute="top" secondItem="CjY-iO-Bhy" secondAttribute="top" constant="18" id="8q4-tb-z1I"/>
+                                                <constraint firstAttribute="bottom" secondItem="Fhg-4y-HRg" secondAttribute="bottom" constant="18" id="EC1-vb-hdj"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fhg-4y-HRg" secondAttribute="trailing" constant="30" id="KHD-oq-5J1"/>
                                                 <constraint firstAttribute="trailing" secondItem="QJs-du-Byk" secondAttribute="trailing" constant="30" id="c5c-FO-p9N"/>
-                                                <constraint firstItem="Fhg-4y-HRg" firstAttribute="leading" secondItem="CjY-iO-Bhy" secondAttribute="leading" id="fXX-VJ-wCP"/>
-                                                <constraint firstItem="Fhg-4y-HRg" firstAttribute="top" secondItem="CjY-iO-Bhy" secondAttribute="top" id="hvC-xn-Omi"/>
                                                 <constraint firstItem="Xgc-7Y-Bbo" firstAttribute="leading" secondItem="CjY-iO-Bhy" secondAttribute="leading" constant="30" id="j9e-BU-LQY"/>
                                                 <constraint firstItem="QJs-du-Byk" firstAttribute="centerY" secondItem="CjY-iO-Bhy" secondAttribute="centerY" id="qpR-sO-d9c"/>
                                                 <constraint firstItem="Xgc-7Y-Bbo" firstAttribute="centerY" secondItem="CjY-iO-Bhy" secondAttribute="centerY" id="w4F-1t-wFc"/>
